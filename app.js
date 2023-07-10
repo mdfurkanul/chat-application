@@ -23,7 +23,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => console.log("Databsed connection successful!"))
-  .catch((err) => console.log(err));
+  .catch((err) => console.log("Databsed: ", err));
 
 // request parsers
 app.use(express.json());
