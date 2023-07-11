@@ -15,11 +15,11 @@ const router = express.Router();
 const page_title = "Login";
 
 //login page
-router.get("/", authRedirect, decoreateHtmlResponse(page_title), getLogin);
+router.get("/", decoreateHtmlResponse(page_title), authRedirect, getLogin);
 router.post(
   "/",
-  authRedirect,
   decoreateHtmlResponse(page_title),
+  authRedirect,
   authValidators,
   authValidationHandler,
   userAuthentication
