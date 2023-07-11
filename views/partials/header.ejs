@@ -16,5 +16,27 @@
     <div class="menu">
       <div class="menu-item"><a href="/inbox">Inbox</a></div>
       <div class="menu-item"><a href="/users">Users</a></div>
-      <div class="menu-item"><a href="/">Login</a></div>
+      <% if(loggedInUser && loggedInUser.username){ %>
+        <div class="menu-item"><a href="/" id="logout">Logout</a></div>
+        <script>
+          const loggedOutToast = Toastify({
+            text:"You are being logged out ...",
+            duration:1000,
+          });
+          const btn = document.getElementById("logout");
+          btn.addEventListener("click",(e)=>{
+            e.preventDefault();
+            fetch("/",{
+              method:"DELETE",
+            });
+            loggedOutToast.showToast();
+            setTimeout(()=>{
+              window.location.replace("/");
+            },1000);
+          });
+        </script>
+      <% }else{ %>
+        <div class="menu-item"><a href="/">Login</a></div>
+        <% } %>
     </div>
+

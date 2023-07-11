@@ -7,18 +7,48 @@
         <h1>Login - Chat Application</h1>
       </div>
       <div id="login-form">
-        <form method="post" action="/">
+        <form method="post" action="/" id="login-form">
           <input
             type="text"
             name="username"
-            placeholder="enter mobile or email"
-            value=""
+            placeholder="Enter mobile or email"
+            value="<%=data.username%>"
           />
-          <p class="error show">Error message here</p>
-          <input type="password" name="password" placeholder="enter password" />
-          <input type="submit" value="Login" />
+          <% if(errors.username){ %>
+            <p class="error email-error show"><%=errors.username.msg%></p>
+          <% } %>
+          <input type="password" name="password" placeholder="Enter password" />
+          <% if(errors.password){ %>
+            <p class="error password-error show"><%=errors.password.msg%></p>
+          <% } %>
+            <input type="submit" value="Login" />
+          <% if(errors.common){ %>
+            <p class="error common-error show"><%=errors.common.msg%></p>
+          <% } %>
         </form>
       </div>
     </div>
+    <script>
+      /*
+      const form = document.getElementById("login-form");
+
+      form.onsubmit = async function(event){
+        event.preventDefault();
+
+        let formdata = new FormData(form);
+
+        let response = await fetch("/",{
+          method:"POST",
+          body:formdata
+        });
+
+        let result = response.json();
+        if(result.errors){
+          console.log("")
+        }else{
+          window.location.href = "";
+        }
+      }*/
+    </script>
 
     <%- include('./partials/footer.ejs'); %>
